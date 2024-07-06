@@ -1,4 +1,4 @@
-NewInvoicePage {
+class NewInvoicePage {
     buttonInvoiceKind = () => cy.get('[data-test="invoice_kind"]');
     inputInvoiceVAT = () => cy.get('[data-test="vat_invoice_kind_option"]');
     inputInvoiceNr = () => cy.get('[data-test="invoice_number"]');
@@ -86,6 +86,6 @@ NewInvoicePage {
     buttonSaveItem = () => cy.get('[data-test="save_line"]');
     buttonCloseWindow = () => cy.get('[data-test="saved_lines_dialog"]');
 
-
 }
-module.export = NewInvoicePage();
+
+module.exports = new NewInvoicePage();

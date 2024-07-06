@@ -1,4 +1,4 @@
-import GeneralPage from '../3-invoice_pages/general_page';
+import GeneralPage from '../pages/general_page';
 
 
 class GeneralLib {
@@ -8,11 +8,11 @@ class GeneralLib {
         cy.clearAllLocalStorage();
         cy.clearAllSessionStorage();
         cy.visit('https://cy.fakturaonline.cz/prihlaseni');
-        random = Math.floor((Math.random() * 205));
+        let random = Math.floor((Math.random() * 205));
         GeneralPage.inputEmail().type(`${random}${username}`);
         cy.intercept('GET', /api\/invoices\/new\/.*/).as('LoadMainPage')
         GeneralPage.btnTryLogin().click({timeout:4000});
-        cy.url().sould('contain', '/faktura');
+        cy.url().should('contain', '/faktura');
         GeneralPage.btnMyAccount().should('exist').and('be.visible');
     };
 
@@ -34,7 +34,7 @@ class GeneralLib {
     }
 
     createStep(stepname) {
-        cy.step(stepname)
+        cy.step(stepname);
     }
 
     createSession(sessionId, setUpFunkce) {
