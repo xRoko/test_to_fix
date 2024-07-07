@@ -5,7 +5,7 @@ import GeneralLib from '../lib/general_libary';
 
 class ContactsLibary {
 
-    addFirstContact(firma,email) {
+    addFirstContact(firma,email,textAdd) {
         GeneralLib.createStep('push button to add first contact');
         ContactsPages.btnAddFirstContact().click({timeout: 500});
         GeneralLib.createStep('type name of company');
@@ -13,7 +13,7 @@ class ContactsLibary {
         GeneralLib.createStep('choose first item in dropbox of companies');
         NewContactPages.dropDownFirstMatch().click({timeout: 500});
         GeneralLib.createStep('add Nova firma to existing company name');
-        NewContactPages.inputContactName().type(' Nova firma', {timeout: 500});
+        NewContactPages.inputContactName().type(textAdd, {timeout: 500});
         GeneralLib.createStep('click to Web input');
         NewContactPages.inputWeb().click();
         GeneralLib.createStep('input email address');
@@ -37,6 +37,7 @@ class ContactsLibary {
     }
 
     removeContact(companyName) {
+        GeneralLib.urlLoad('https://cy.fakturaonline.cz/kontakty');
         GeneralLib.createStep('click on delete button for mentioned company');
         ContactsPages.btnDeleteRow(companyName).click({force: true}, {timeout: 5000});
         GeneralLib.createStep('click for confirmation button');

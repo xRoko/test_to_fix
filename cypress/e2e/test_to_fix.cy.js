@@ -29,27 +29,29 @@ describe('Please fix me', () => {
 
   it('2.Vytvor kontakt',() => {
     GeneralLib.urlLoad('https://cy.fakturaonline.cz/kontakty');
-    ContactsLibary.addFirstContact('Jana', 'kontakt@seznam.cz');
+    ContactsLibary.addFirstContact('Jana', 'kontakt@seznam.cz','New company');
   });
 
-  it.only('3.Vytvoreni invoice pro vytvoreny kontakt,ktery obsahuje v nazvu Nova Firma ', () => {
+  it('3.Vytvoreni invoice pro vytvoreny kontakt,ktery obsahuje v nazvu Nova Firma ', () => {
     GeneralLib.urlLoad('https://cy.fakturaonline.cz/kontakty');
-    ContactsLibary.addFirstContact('Sova', 'novaFirma@seznam.cz');
+    ContactsLibary.addFirstContact('Sova', 'novaFirma@seznam.cz',' Nova firma');
     NewInvoiceLibary.newInvoiceFromContact('Nova', 'Roman', '20', 'den', 'SW testing', '1500', '21');
-    GeneralLib.createIntercept('POST', '/api\/send-invoice\/.*/').as('SendInvoiceMail');
+    GeneralLib.createIntercept('POST', /api\/send-invoice\/.*/).as('SendInvoiceMail');
     NewInvoicePage.buttonCreateAndSend().click({force:true});
     NewInvoicePage.buttonSendEmailConfirm().click();
     GeneralLib.createStep('Verification of sending to email');
     GeneralLib.proceedIntercept('@SendInvoiceMail', 'Odeslani na email funguje');
+    ContactsLibary.removeContact('Nova');
+
   });
 
-  it.only('4.Smazani kontaktu ', () => {
+  it('4.Smazani kontaktu ', () => {
     GeneralLib.createStep('verification loading page')
-    GeneralLib.createIntercept('GET', 'api\/contacts\/.*').as('LoadPageContacts');
+    GeneralLib.createIntercept('GET', /api\/contacts\/.*/).as('LoadPageContacts');
     GeneralLib.urlLoad('https://cy.fakturaonline.cz/kontakty');
-    GeneralLib.proceedIntercept('', 'Page contacts loaded');
-    ContactsLibary.addContact('A');
-    ContactsLibary.removeContact('A');
+    GeneralLib.proceedIntercept('@LoadPageContacts', 'Page contacts loaded');
+    ContactsLibary.addContact('VODA');
+    ContactsLibary.removeContact('VODA');
 
   });
 });
