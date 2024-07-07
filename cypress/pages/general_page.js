@@ -8,4 +8,5 @@ class GeneralPage {
 
 }
 
-module.exports = new GeneralPage;
+module.exports = new GeneralPage();
+
