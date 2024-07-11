@@ -1,6 +1,6 @@
 
 
-class contactsPages {
+class ContactsPages {
 
     btnAddFirstContact = () => cy.get('[data-test="add-contact-button"]').first();
     btnAddInvoiceToContact = () => cy.get('[data-test="new-invoice"]').first();

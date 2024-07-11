@@ -1,4 +1,4 @@
-NewInvoicePage {
+class NewInvoicePage {
     buttonInvoiceKind = () => cy.get('[data-test="invoice_kind"]');
     inputInvoiceVAT = () => cy.get('[data-test="vat_invoice_kind_option"]');
     inputInvoiceNr = () => cy.get('[data-test="invoice_number"]');
@@ -88,4 +88,4 @@ NewInvoicePage {
 
 
 }
-module.export = NewInvoicePage();
+module.exports = new NewInvoicePage();

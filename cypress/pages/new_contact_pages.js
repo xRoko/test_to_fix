@@ -8,6 +8,5 @@ class NewContactPages {
     inputVat = () => cy.get('[data-test="vat"]');
     btnSave = () => cy.get('[data-test="save-contact"]');
     inputWeb = () => cy.get('[data-test="web"]');
-
-
-module.exports = new NewContactPages();
+}
+    module.exports = new NewContactPages();
